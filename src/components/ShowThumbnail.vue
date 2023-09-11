@@ -17,7 +17,7 @@ const url = `/show/${props.id}/`
 </script>
 <template>
   <li role="listitem" :class="{ 'show-thumnail--selected': isSelected }" ref="element">
-    <router-link :to="url">
+    <router-link :to="url" tabindex="-1">
       <img :src="props.image" :alt="`Poster for ${props.name}`" :title="props.name" />
     </router-link>
   </li>

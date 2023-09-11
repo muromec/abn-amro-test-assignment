@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useShowsStore } from '@/stores/shows'
+import { useKeyboard } from '@/utils/keyboard'
 import ShowThumbnail from '@/components/ShowThumbnail.vue'
 const props = defineProps(['genre'])
 
@@ -10,36 +11,8 @@ onMounted(() => {
 })
 const filteredList = shows.filterByGenre(props.genre)
 
-const selectedIndex = ref(-1)
 const items = ref(null)
-
-function handleFocus() {
-  selectedIndex.value = 0
-  items.value[selectedIndex.value].scrollIntoView()
-}
-
-function handleBlur() {
-  selectedIndex.value = -1
-}
-
-function handleOpen() {
-  items.value[selectedIndex.value].open()
-}
-
-function loop(value, max) {
-  if (value < 0) {
-    return max
-  }
-  if (value > max) {
-    return 0
-  }
-  return value
-}
-
-function move(offset) {
-  selectedIndex.value = loop(selectedIndex.value + offset, filteredList.value.length - 1)
-  items.value[selectedIndex.value].scrollIntoView()
-}
+const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard(items)
 </script>
 <template>
   <h2>{{ props.genre }}</h2>
