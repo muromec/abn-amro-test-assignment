@@ -16,16 +16,27 @@ defineExpose({ scrollIntoView, open })
 const url = `/show/${props.id}/`
 </script>
 <template>
-  <li role="listitem" :class="{ 'show-thumnail--selected': isSelected }" ref="element">
+  <li
+    role="listitem"
+    class="show-thumbnail"
+    :class="{ 'show-thumnail--selected': isSelected }"
+    ref="element"
+  >
     <router-link :to="url" tabindex="-1">
       <img :src="props.image" :alt="`Poster for ${props.name}`" :title="props.name" />
     </router-link>
   </li>
 </template>
 <style scoped>
+.show-thumbnail {
+  margin: 0 0.3rem;
+}
 .show-thumnail--selected {
   outline: 3px var(--color-border) solid;
   outline-offset: 0.1rem;
   border-radius: 0.3rem;
+}
+.show-thumbnail a {
+  display: inline-block;
 }
 </style>

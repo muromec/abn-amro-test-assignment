@@ -20,7 +20,6 @@ const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard
     role="list"
   >
     <ShowThumbnail
-      class="show-thumbnail"
       ref="items"
       v-for="(show, index) of list"
       key="show.id"
@@ -41,12 +40,11 @@ h2 {
   max-width: calc(100vw * 0.95);
   overflow-x: scroll;
   padding: 1rem 0;
+  list-style: none;
+  line-height: 1;
 }
 .show-thumbnail-list:focus-within {
   outline: none;
-}
-.show-thumbnail {
-  margin: 0 0.3rem;
 }
 
 ul::-webkit-scrollbar {

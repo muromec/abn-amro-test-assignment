@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, RouterLink } from 'vue-router'
 import { useShowsStore } from '@/stores/shows'
 import { cleanupHTML } from '@/utils/cleanupHTML'
 
 const route = useRoute()
 const shows = useShowsStore()
-onMounted(() => {
-  shows.load()
+onMounted(async () => {
+  await shows.load()
 })
 const details = shows.findDetails(Number(route.params.id))
+function makeGenreRef(genre) {
+  return `/genre/${genre}/`
+}
 </script>
 
 <template>
@@ -19,7 +22,9 @@ const details = shows.findDetails(Number(route.params.id))
         <h2>{{ details.name }}</h2>
         <img :src="details.image.medium" />
         <div class="genres">
-          <span v-for="genre of details.genres">{{ genre }}</span>
+          <span v-for="genre of details.genres">
+            <router-link :to="makeGenreRef(genre)">{{ genre }}</router-link>
+          </span>
         </div>
       </div>
       <div class="col summary">

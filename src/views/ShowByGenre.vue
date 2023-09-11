@@ -2,8 +2,10 @@
 import ShowThumbnailList from '@/components/ShowThumbnailList.vue'
 import { onMounted } from 'vue'
 import { useShowsStore } from '@/stores/shows'
-
+import { useRoute } from 'vue-router'
+const route = useRoute()
 const shows = useShowsStore()
+
 onMounted(() => {
   shows.load()
 })
@@ -11,9 +13,10 @@ onMounted(() => {
 
 <template>
   <main v-if="shows.list">
-    <ShowThumbnailList title="Drama" :list="shows.filterByGenre('Drama').value" />
-    <ShowThumbnailList title="Comedy" :list="shows.filterByGenre('Comedy').value" />
-    <ShowThumbnailList title="Mystery" :list="shows.filterByGenre('Mystery').value" />
+    <ShowThumbnailList
+      :title="route.params.query"
+      :list="shows.filterByGenre(route.params.query).value"
+    />
   </main>
 </template>
 <style scoped>
