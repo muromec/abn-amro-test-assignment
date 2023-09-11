@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const props = defineProps(['value'])
+const props = defineProps(['name', 'image'])
 </script>
 <template>
-<li>
-  {{ props.value.name }}
-  <img :src="props.value.image.medium" :alt="`Poster for ${props.value.name}`" />
-</li>
+  <li>
+    {{ props.name }}
+    <img :src="props.image" :alt="`Poster for ${props.name}`" />
+  </li>
 </template>
