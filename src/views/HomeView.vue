@@ -4,8 +4,9 @@ import ShowThumbnailList from '@/components/ShowThumbnailList.vue'
 
 <template>
   <main>
-    Main page
-    <ShowThumbnailList genre="drama" />
+    <ShowThumbnailList genre="Drama" />
+    <ShowThumbnailList genre="Comedy" />
+    <ShowThumbnailList genre="Mystery" />
   </main>
 </template>
 <style scoped>

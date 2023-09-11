@@ -1,9 +1,31 @@
 <script setup lang="ts">
-const props = defineProps(['name', 'image'])
+import { useRouter, RouterLink } from 'vue-router'
+import { ref } from 'vue'
+const props = defineProps(['id', 'name', 'image', 'isSelected'])
+
+const element = ref(null)
+const router = useRouter()
+
+function scrollIntoView() {
+  element.value.scrollIntoView({ block: 'center', inline: 'center' })
+}
+function open() {
+  router.push(url)
+}
+defineExpose({ scrollIntoView, open })
+const url = `/show/${props.id}/`
 </script>
 <template>
-  <li>
-    {{ props.name }}
-    <img :src="props.image" :alt="`Poster for ${props.name}`" />
+  <li role="listitem" :class="{ 'show-thumnail--selected': isSelected }" ref="element">
+    <router-link :to="url">
+      <img :src="props.image" :alt="`Poster for ${props.name}`" :title="props.name" />
+    </router-link>
   </li>
 </template>
+<style scoped>
+.show-thumnail--selected {
+  outline: 3px var(--color-border) solid;
+  outline-offset: 0.1rem;
+  border-radius: 0.3rem;
+}
+</style>
