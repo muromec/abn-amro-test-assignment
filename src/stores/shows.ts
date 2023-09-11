@@ -14,5 +14,9 @@ export const useShowsStore = defineStore('shows', () => {
     return computed(() => list.value.filter((item) => item.genres.includes(genre)))
   }
 
-  return { list, filterByGenre, load }
+  function findDetails(id) {
+    return computed(() => list.value && list.value.find((item) => item.id === id))
+  }
+
+  return { list, filterByGenre, findDetails, load }
 })
