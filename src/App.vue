@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import SearchForm from './components/SearchForm.vue'
 </script>
 
 <template>
   <header>
     <h1>I am a film gallery</h1>
     <div class="wrapper">
+      <SearchForm class="search" />
       <nav>
         <RouterLink to="/">Home</RouterLink>
       </nav>
@@ -24,6 +26,9 @@ header {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--color-border);
+}
+.wrapper {
+  display: flex;
 }
 
 nav {

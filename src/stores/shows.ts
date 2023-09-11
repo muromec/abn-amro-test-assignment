@@ -10,6 +10,14 @@ export const useShowsStore = defineStore('shows', () => {
     list.value = data
   }
 
+  async function searchFor(query) {
+    const url = new URL('https://api.tvmaze.com/search/shows')
+    url.searchParams.set('q', query)
+    const response = await fetch(url)
+    const data = await response.json()
+    list.value = data.map((result) => result.show)
+  }
+
   function filterByGenre(genre) {
     return computed(() => list.value.filter((item) => item.genres.includes(genre)))
   }
@@ -18,5 +26,5 @@ export const useShowsStore = defineStore('shows', () => {
     return computed(() => list.value && list.value.find((item) => item.id === id))
   }
 
-  return { list, filterByGenre, findDetails, load }
+  return { list, filterByGenre, findDetails, load, searchFor }
 })

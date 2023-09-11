@@ -3,21 +3,14 @@ import { ref, onMounted } from 'vue'
 import { useShowsStore } from '@/stores/shows'
 import { useKeyboard } from '@/utils/keyboard'
 import ShowThumbnail from '@/components/ShowThumbnail.vue'
-const props = defineProps(['genre'])
-
-const shows = useShowsStore()
-onMounted(() => {
-  shows.load()
-})
-const filteredList = shows.filterByGenre(props.genre)
+const props = defineProps(['title', 'list'])
 
 const items = ref(null)
 const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard(items)
 </script>
 <template>
-  <h2>{{ props.genre }}</h2>
+  <h2>{{ props.title }}</h2>
   <ul
-    v-if="shows.list"
     class="show-thumbnail-list"
     @keydown.prevent.left="move(-1)"
     @keydown.prevent.right="move(1)"
@@ -29,7 +22,7 @@ const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard
     <ShowThumbnail
       class="show-thumbnail"
       ref="items"
-      v-for="(show, index) of filteredList"
+      v-for="(show, index) of list"
       key="show.id"
       :id="show.id"
       :name="show.name"
