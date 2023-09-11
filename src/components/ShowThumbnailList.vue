@@ -5,7 +5,7 @@ import { useKeyboard } from '@/utils/keyboard'
 import ShowThumbnail from '@/components/ShowThumbnail.vue'
 const props = defineProps(['title', 'list'])
 
-const items = ref(null)
+const items = ref<Array<InstanceType<typeof ShowThumbnail>>>([])
 const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard(items)
 </script>
 <template>

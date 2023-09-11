@@ -10,7 +10,7 @@ onMounted(async () => {
   await shows.load()
 })
 const details = shows.findDetails(Number(route.params.id))
-function makeGenreRef(genre) {
+function makeGenreRef(genre: string) {
   return `/genre/${genre}/`
 }
 </script>

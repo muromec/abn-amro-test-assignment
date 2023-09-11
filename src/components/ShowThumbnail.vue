@@ -3,10 +3,13 @@ import { useRouter, RouterLink } from 'vue-router'
 import { ref } from 'vue'
 const props = defineProps(['id', 'name', 'image', 'isSelected'])
 
-const element = ref(null)
+const element = ref<HTMLElement | null>(null)
 const router = useRouter()
 
 function scrollIntoView() {
+  if (!element.value) {
+    return
+  }
   element.value.scrollIntoView({ block: 'center', inline: 'center' })
 }
 function open() {

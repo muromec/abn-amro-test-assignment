@@ -15,7 +15,7 @@ onMounted(() => {
   <main v-if="shows.list">
     <ShowThumbnailList
       :title="route.params.query"
-      :list="shows.filterByGenre(route.params.query).value"
+      :list="shows.filterByGenre(route.params.query as string).value"
     />
   </main>
 </template>

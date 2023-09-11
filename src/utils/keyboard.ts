@@ -1,6 +1,12 @@
 import { ref, onMounted } from 'vue'
+import type { Ref } from 'vue'
 
-export function useKeyboard(items) {
+interface KeyboardScrollable {
+  scrollIntoView: () => void
+  open: () => void
+}
+
+export function useKeyboard(items: Ref<Array<KeyboardScrollable>>) {
   const selectedIndex = ref(-1)
   function handleFocus() {
     selectedIndex.value = 0
@@ -15,7 +21,7 @@ export function useKeyboard(items) {
     items.value[selectedIndex.value].open()
   }
 
-  function loop(value, max) {
+  function loop(value: number, max: number) {
     if (value < 0) {
       return max
     }
@@ -25,7 +31,7 @@ export function useKeyboard(items) {
     return value
   }
 
-  function move(offset) {
+  function move(offset: number) {
     selectedIndex.value = loop(selectedIndex.value + offset, items.value.length - 1)
     items.value[selectedIndex.value].scrollIntoView()
   }

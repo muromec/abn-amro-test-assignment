@@ -8,7 +8,7 @@ const route = useRoute()
 
 const shows = useShowsStore()
 watchEffect(() => {
-  shows.searchFor(route.params.query)
+  shows.searchFor(route.params.query as string)
 })
 </script>
 <template>
