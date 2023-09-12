@@ -1,11 +1,12 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { useApiStore } from './api'
 
 type Link = {
   href: string
 }
 
-type Show = {
+export type Show = {
   id: number
   name: string
   genres: Array<string>
@@ -21,33 +22,16 @@ type Show = {
   }
 }
 type ShowList = Array<Show>
-type SearchResult = {
-  show: Show
-}
-type SearchResultList = Array<SearchResult>
 
 export const useShowsStore = defineStore('shows', () => {
-  const list = ref<ShowList | null>(null)
+  const api = useApiStore()
+
+  const list = ref<Show[] | null>(null)
 
   async function load() {
-    const response = await fetch('https://api.tvmaze.com/shows')
-    if (response.ok) {
-      const data = (await response.json()) as ShowList
-      list.value = data
-    } else {
-      // TODO show error
-    }
-  }
-
-  async function searchFor(query: string) {
-    const url = new URL('https://api.tvmaze.com/search/shows')
-    url.searchParams.set('q', query)
-    const response = await fetch(url)
-    if (response.ok) {
-      const data = (await response.json()) as SearchResultList
-      list.value = data.map((result) => result.show)
-    } else {
-      // TODO show error
+    const response = await api.makeRequest<ShowList>('https://api.tvmaze.com/shows')
+    if (response) {
+      list.value = response
     }
   }
 
@@ -59,5 +43,5 @@ export const useShowsStore = defineStore('shows', () => {
     return computed(() => list.value && list.value.find((item) => item.id === id))
   }
 
-  return { list, filterByGenre, findDetails, load, searchFor }
+  return { list, filterByGenre, findDetails, load }
 })

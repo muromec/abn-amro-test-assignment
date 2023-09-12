@@ -2,11 +2,11 @@
 import ShowThumbnailList from '@/components/ShowThumbnailList.vue'
 
 import { watchEffect } from 'vue'
-import { useShowsStore } from '@/stores/shows'
+import { useShowsSearchStore } from '@/stores/showsSearch'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 
-const shows = useShowsStore()
+const shows = useShowsSearchStore()
 watchEffect(() => {
   shows.searchFor(route.params.query as string)
 })
