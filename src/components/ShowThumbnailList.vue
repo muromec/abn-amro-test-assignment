@@ -12,8 +12,9 @@ const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard
 </script>
 <template>
   <h2>{{ props.title }}</h2>
+  <ShowSkeletonList :count="30" v-if="isLoading" />
   <ul
-    v-if="list"
+    v-else-if="list"
     class="show-thumbnail-list"
     @keydown.prevent.left="move(-1)"
     @keydown.prevent.right="move(1)"
@@ -33,7 +34,6 @@ const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard
       :is-selected="index === selectedIndex"
     />
   </ul>
-  <ShowSkeletonList :count="30" v-else-if="isLoading" />
 </template>
 <style scoped>
 .show-thumbnail-list {
