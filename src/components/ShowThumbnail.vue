@@ -13,7 +13,7 @@ function scrollIntoView() {
   element.value.scrollIntoView({ block: 'center', inline: 'center' })
 }
 function open() {
-  router.push(url)
+  return router.push(url)
 }
 defineExpose({ scrollIntoView, open })
 const url = `/show/${props.id}/`
@@ -26,7 +26,12 @@ const url = `/show/${props.id}/`
     ref="element"
   >
     <router-link :to="url" tabindex="-1">
-      <img :src="props.image" :alt="`Poster for ${props.name}`" :title="props.name" />
+      <img
+        data-testid="poster"
+        :src="props.image"
+        :alt="`Poster for ${props.name}`"
+        :title="props.name"
+      />
     </router-link>
   </li>
 </template>
