@@ -6,7 +6,7 @@ export const useApiStore = defineStore('api', () => {
 
   async function makeRequest<ResponseType>(url: string | URL) {
     try {
-      const response = await fetch('https://api.tvmaze.com/shows')
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Expect 200')
       }

@@ -12,5 +12,5 @@ watchEffect(() => {
 })
 </script>
 <template>
-  <ShowThumbnailList title="Search results" :list="shows.list" />
+  <ShowThumbnailList v-if="shows.list" title="Search results" :list="shows.list" />
 </template>
