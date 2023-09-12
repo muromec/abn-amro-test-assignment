@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useApiStore } from './api'
-import type { Show } from './shows'
+import type { Show } from './types'
 
 type Link = {
   href: string

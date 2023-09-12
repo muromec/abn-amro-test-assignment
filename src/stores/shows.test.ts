@@ -1,6 +1,5 @@
 import { vi, expect, it, beforeEach, afterEach } from 'vitest'
 import { useShowsStore } from './shows'
-import type { Show } from './shows'
 
 import { useMessagesStore } from './messages'
 import { setActivePinia, createPinia } from 'pinia'

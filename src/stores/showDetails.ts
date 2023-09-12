@@ -2,7 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useApiStore } from './api'
 import { useShowsStore } from './shows'
-import type { Show } from './shows'
+import type { Show } from './types'
 
 type ShowCache = {
   [key: number]: Show

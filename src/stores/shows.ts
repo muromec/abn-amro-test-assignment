@@ -1,27 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useApiStore } from './api'
-
-type Link = {
-  href: string
-}
-
-export type Show = {
-  id: number
-  name: string
-  genres: Array<string>
-  image: {
-    original: string
-    medium: string
-  }
-  summary: string
-  language: string
-  premiered: string
-  _links: {
-    self: Link
-  }
-}
-type ShowList = Array<Show>
+import type { Show } from './types'
 
 export const useShowsStore = defineStore('shows', () => {
   const api = useApiStore()
@@ -31,7 +11,7 @@ export const useShowsStore = defineStore('shows', () => {
 
   async function load() {
     loadingState.value = 'loading'
-    const response = await api.makeRequest<ShowList>('https://api.tvmaze.com/shows')
+    const response = await api.makeRequest<Show[]>('https://api.tvmaze.com/shows')
 
     if (response) {
       list.value = response

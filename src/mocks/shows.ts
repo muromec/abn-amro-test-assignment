@@ -1,4 +1,4 @@
-import type { Show } from '@/stores/shows'
+import type { Show } from '@/stores/types'
 
 function makeLinks(id: number) {
   return { self: { href: `/api/show/${id}` } }
