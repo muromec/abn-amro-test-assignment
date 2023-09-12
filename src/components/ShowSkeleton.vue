@@ -2,7 +2,7 @@
 void 0 /* not having setup spols coverage for quick look */
 </script>
 <template>
-  <div class="skeleton" />
+  <div class="skeleton" data-testid="show-skeleton" />
 </template>
 <style scoped>
 .skeleton {
