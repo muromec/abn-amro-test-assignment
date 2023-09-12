@@ -11,7 +11,7 @@ const items = ref<Array<InstanceType<typeof ShowThumbnail>>>([])
 const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard(items)
 </script>
 <template>
-  <h2>{{ props.title }}</h2>
+  <h2 data-testid="show-title-id">{{ props.title }}</h2>
   <ShowSkeletonList :count="30" v-if="isLoading" />
   <ul
     v-else-if="list"

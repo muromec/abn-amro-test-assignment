@@ -39,5 +39,14 @@ export const useShowsStore = defineStore('shows', () => {
   const isLoading = computed(() => loadingState.value === 'loading')
   const isError = computed(() => loadingState.value === 'error')
 
-  return { list, filterByGenre, findDetails, load, lazyLoad, isLoading, isError }
+  return {
+    list,
+    filterByGenre,
+    findDetails,
+    load,
+    lazyLoad,
+    isLoading,
+    isError,
+    testing: { loadingState }
+  }
 })

@@ -5,7 +5,7 @@ const list = new Array(props.count).fill(null)
 </script>
 <template>
   <h2>{{ props.title }}</h2>
-  <div class="wrapper" aria-busy="true" aria-live="polite">
+  <div class="wrapper" aria-busy="true" aria-live="polite" data-testid="show-skeletons">
     <ShowSkeleton v-for="(_empty, index) in list" :key="index" />
   </div>
 </template>
