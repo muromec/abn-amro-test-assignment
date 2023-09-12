@@ -4,7 +4,7 @@ import { useApiStore } from './api'
 import { useShowsStore } from './shows'
 import type { Show } from './shows'
 
-type ShowCashe = {
+type ShowCache = {
   [key: number]: Show
 }
 type LoadingStates = {
@@ -12,7 +12,7 @@ type LoadingStates = {
 }
 
 export const useShowDetails = defineStore('showDetails', () => {
-  const cache = ref<ShowCash>({})
+  const cache = ref<ShowCache>({})
   const api = useApiStore()
   const loadingState = ref<LoadingStates>({})
 
