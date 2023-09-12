@@ -5,11 +5,15 @@ export const useApiStore = defineStore('api', () => {
   const messages = useMessagesStore()
 
   async function makeRequest<ResponseType>(url: string | URL) {
-    const response = await fetch('https://api.tvmaze.com/shows')
-    if (response.ok) {
+    try {
+      const response = await fetch('https://api.tvmaze.com/shows')
+      if (!response.ok) {
+        throw new Error('Expect 200')
+      }
       return (await response.json()) as ResponseType
+    } catch (error) {
+      messages.addMessage('error', 'Ooops, Failed to load!')
     }
-    messages.addMessage('error', 'Ooops, Failed to load!')
     return null
   }
 

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import SearchForm from './components/SearchForm.vue'
+import MessageArea from './components/MessageArea.vue'
 </script>
 
 <template>
+  <MessageArea />
   <header>
     <h1>I am a film gallery</h1>
     <div class="wrapper">

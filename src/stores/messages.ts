@@ -1,8 +1,8 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-type MessageType = 'error' | 'notify'
-type Message = {
+export type MessageType = 'error' | 'notify'
+export type Message = {
   id: number
   type: MessageType
   contents: string
