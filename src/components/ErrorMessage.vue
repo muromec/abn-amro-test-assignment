@@ -1,3 +1,6 @@
+<script setup lang="ts">
+void 0 /* not having setup spols coverage for quick look */
+</script>
 <template>
   <div role="alert">Something went a bit wrong and we will deal with it in no time.</div>
 </template>

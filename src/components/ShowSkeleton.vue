@@ -1,3 +1,6 @@
+<script setup lang="ts">
+void 0 /* not having setup spols coverage for quick look */
+</script>
 <template>
   <div class="skeleton" />
 </template>
