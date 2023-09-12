@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ShowDetails from '../views/ShowDetails.vue'
+import ShowDetailsView from '../views/ShowDetailsView.vue'
 import ShowSearchResult from '../views/ShowSearchResult.vue'
 import ShowByGenre from '../views/ShowByGenre.vue'
 
@@ -20,7 +20,7 @@ const router = createRouter({
     {
       path: '/show/:id/',
       name: 'show',
-      component: ShowDetails
+      component: ShowDetailsView
     },
     {
       path: '/search/:query/',
