@@ -7,10 +7,7 @@ const element = ref<HTMLElement | null>(null)
 const router = useRouter()
 
 function scrollIntoView() {
-  if (!element.value) {
-    return
-  }
-  element.value.scrollIntoView({ block: 'center', inline: 'center' })
+  (element.value as HTMLElement).scrollIntoView({ block: 'center', inline: 'center' })
 }
 function open() {
   return router.push(url)
