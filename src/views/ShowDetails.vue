@@ -3,6 +3,7 @@ import { ref, watchEffect } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { useShowDetails } from '@/stores/showDetails'
 import { cleanupHTML } from '@/utils/cleanupHTML'
+import ErrorMessage from '@/components/ErrorMessage.vue'
 
 const route = useRoute()
 const detailsStore = useShowDetails()
@@ -11,6 +12,8 @@ watchEffect(async () => {
   await detailsStore.lazyLoadById(Number(route.params.id))
 })
 const details = detailsStore.findDetails(Number(route.params.id))
+const isError = detailsStore.isErrorById(Number(route.params.id))
+
 function makeGenreRef(genre: string) {
   return `/genre/${genre}/`
 }
@@ -18,7 +21,8 @@ function makeGenreRef(genre: string) {
 
 <template>
   <main>
-    <div v-if="details" class="details">
+    <ErrorMessage v-if="isError" />
+    <div v-else-if="details" class="details">
       <div class="col">
         <h2>{{ details.name }}</h2>
         <img class="poster" :src="details.image.medium" />

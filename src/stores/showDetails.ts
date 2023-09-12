@@ -8,7 +8,7 @@ type ShowCashe = {
   [key: number]: Show
 }
 type LoadingStates = {
-  [key: number]: boolean
+  [key: number]: 'loading' | 'error'
 }
 
 export const useShowDetails = defineStore('showDetails', () => {
@@ -19,13 +19,15 @@ export const useShowDetails = defineStore('showDetails', () => {
   const shows = useShowsStore()
 
   async function loadById(id: number) {
-    loadingState.value[id] = true
+    loadingState.value[id] = 'loading'
     const details = await api.makeRequest<Show>(`https://api.tvmaze.com/shows/${id}`)
-    loadingState.value[id] = false
 
     if (!details) {
+      loadingState.value[id] = 'error'
       return null
     }
+    delete loadingState.value[id]
+
     cache.value[id] = details
   }
 
@@ -48,8 +50,11 @@ export const useShowDetails = defineStore('showDetails', () => {
   }
 
   function isLoadingById(id: number) {
-    return computed(() => Boolean(loadingStates[id]))
+    return computed(() => loadingState.value[id] === 'loading')
+  }
+  function isErrorById(id: number) {
+    return computed(() => loadingState.value[id] === 'error')
   }
 
-  return { lazyLoadById, isLoadingById, findDetails }
+  return { lazyLoadById, isLoadingById, isErrorById, findDetails }
 })

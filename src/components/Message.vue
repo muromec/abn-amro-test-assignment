@@ -11,7 +11,7 @@ function handleClose() {
 }
 </script>
 <template>
-  <div class="message" :class="`message-${type}`">
+  <div class="message" :class="`message-${type}`" role="alert">
     <div class="contents">
       <span class="type">{{ typeLabel }}</span>
       <span>{{ props.content }}</span>

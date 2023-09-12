@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import ShowThumbnailList from '@/components/ShowThumbnailList.vue'
+import ErrorMessage from '@/components/ErrorMessage.vue'
+
 import { onMounted } from 'vue'
 import { useShowsStore } from '@/stores/shows'
 import { useRoute } from 'vue-router'
@@ -12,8 +14,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <main v-if="shows.list">
+  <main>
+    <ErrorMessage v-if="shows.isError" />
     <ShowThumbnailList
+      v-else
       :title="route.params.query"
       :list="shows.filterByGenre(route.params.query as string).value"
     />

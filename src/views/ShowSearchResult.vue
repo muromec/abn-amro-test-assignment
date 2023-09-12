@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ShowThumbnailList from '@/components/ShowThumbnailList.vue'
+import ErrorMessage from '@/components/ErrorMessage.vue'
 
 import { watchEffect } from 'vue'
 import { useShowsSearchStore } from '@/stores/showsSearch'
@@ -13,7 +14,13 @@ watchEffect(() => {
 </script>
 <template>
   <main>
-    <ShowThumbnailList title="Search results" :list="shows.list" :is-loading="shows.isLoading" />
+    <ErrorMessage v-if="shows.isError" />
+    <ShowThumbnailList
+      v-else
+      title="Search results"
+      :list="shows.list"
+      :is-loading="shows.isLoading"
+    />
   </main>
 </template>
 <style scoped>

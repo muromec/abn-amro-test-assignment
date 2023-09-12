@@ -16,18 +16,20 @@ export const useShowsSearchStore = defineStore('showsSearch', () => {
   const api = useApiStore()
 
   const list = ref<Show[] | null>(null)
-  const isLoading = ref<boolean>(false)
+  const loadingState = ref<'initial' | 'error' | 'loading' | 'ok'>('initial')
   const lastQuery = ref<string | null>(null)
 
   async function apiSearchFor(query: string) {
     const url = new URL('https://api.tvmaze.com/search/shows')
     url.searchParams.set('q', query)
-    isLoading.value = true
+    loadingState.value = 'loading'
     const response = await api.makeRequest<SearchResultList>(url)
     if (response) {
       list.value = response.map((result) => result.show)
+      loadingState.value = 'ok'
+    } else {
+      loadingState.value = 'error'
     }
-    isLoading.value = false
     lastQuery.value = query
   }
   function searchFor(query: string) {
@@ -36,6 +38,8 @@ export const useShowsSearchStore = defineStore('showsSearch', () => {
     }
     return apiSearchFor(query)
   }
+  const isLoading = computed(() => loadingState.value === 'loading')
+  const isError = computed(() => loadingState.value === 'error')
 
-  return { list, searchFor, isLoading }
+  return { list, searchFor, isLoading, isError }
 })
