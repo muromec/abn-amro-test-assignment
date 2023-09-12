@@ -1,15 +1,19 @@
 import { vi, expect, it, beforeEach, afterEach } from 'vitest'
 import { screen, fireEvent, render, cleanup } from '@testing-library/vue'
+import { createRouter, createMemoryHistory } from 'vue-router'
+
 import ShowThumbnailList from './ShowThumbnailList.vue'
-import router from '@/router'
 import { MOCK_SHOW_LIST } from '@/mocks/shows'
 import type { Show } from '@/stores/types'
 
 afterEach(cleanup)
-afterEach(() => {
-  vi.restoreAllMocks()
-})
 
+const showRoute = { name: 'show', path: '/show/:id/', component: {} }
+const noRoute = { name: 'nowhere', path: '', component: {} }
+const router = createRouter({
+  history: createMemoryHistory(''),
+  routes: [showRoute, noRoute]
+})
 function renderList({ isLoading = false }: { isLoading?: boolean } = {}) {
   const props = {
     title: 'Genre name',
@@ -17,6 +21,7 @@ function renderList({ isLoading = false }: { isLoading?: boolean } = {}) {
     isLoading
   }
   vi.spyOn(router, 'push')
+  router.replace('/')
   render(ShowThumbnailList, { global: { plugins: [router] }, props })
   screen.queryAllByRole('listitem').forEach((li) => {
     li.scrollIntoView = vi.fn()

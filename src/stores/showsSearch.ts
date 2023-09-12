@@ -41,5 +41,5 @@ export const useShowsSearchStore = defineStore('showsSearch', () => {
   const isLoading = computed(() => loadingState.value === 'loading')
   const isError = computed(() => loadingState.value === 'error')
 
-  return { list, searchFor, isLoading, isError }
+  return { list, searchFor, isLoading, isError, testing: { loadingState } }
 })

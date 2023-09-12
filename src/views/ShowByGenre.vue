@@ -9,7 +9,7 @@ const route = useRoute()
 const shows = useShowsStore()
 
 onMounted(() => {
-  shows.load()
+  shows.lazyLoad()
 })
 </script>
 
@@ -20,6 +20,7 @@ onMounted(() => {
       v-else
       :title="route.params.query"
       :list="shows.filterByGenre(route.params.query as string).value"
+      :is-loading="shows.isLoading"
     />
   </main>
 </template>
