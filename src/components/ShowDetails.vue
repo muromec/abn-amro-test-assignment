@@ -14,7 +14,7 @@ function makeGenreRef(genre: string) {
 <template>
   <div class="details">
     <div class="col">
-      <h2>{{ details.name }}</h2>
+      <h2 data-testid="show-title-id">{{ details.name }}</h2>
       <img class="poster" :src="details.image.medium" />
       <div class="genres">
         <span v-for="genre of details.genres">
