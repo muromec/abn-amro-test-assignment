@@ -5,7 +5,7 @@ import { useShowsStore } from '@/stores/shows'
 
 const shows = useShowsStore()
 onMounted(() => {
-  shows.load()
+  shows.lazyLoad()
 })
 </script>
 
