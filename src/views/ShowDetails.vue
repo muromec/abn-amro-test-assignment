@@ -20,7 +20,7 @@ function makeGenreRef(genre: string) {
     <div v-if="details" class="details">
       <div class="col">
         <h2>{{ details.name }}</h2>
-        <img :src="details.image.medium" />
+        <img class="poster" :src="details.image.medium" />
         <div class="genres">
           <span v-for="genre of details.genres">
             <router-link :to="makeGenreRef(genre)">{{ genre }}</router-link>
@@ -49,8 +49,11 @@ main {
   display: flex;
   flex-direction: row;
 }
+img.poster {
+  margin-top: 1rem;
+}
 .summary {
-  margin: 2rem;
+  margin: 3rem 2rem;
 }
 .summary p {
   margin-bottom: 0.4rem;

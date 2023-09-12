@@ -6,7 +6,9 @@ export const useApiStore = defineStore('api', () => {
 
   async function makeRequest<ResponseType>(url: string | URL) {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url)
+      // Uncomment to simalute network delay:
+      ;/ * await new Promise(resolve => setTimeout(resolve, 3000)); */
       if (!response.ok) {
         throw new Error('Expect 200')
       }

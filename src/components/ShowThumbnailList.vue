@@ -32,9 +32,6 @@ const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard
   </ul>
 </template>
 <style scoped>
-h2 {
-  margin-left: 0.3rem;
-}
 .show-thumbnail-list {
   display: flex;
   max-width: calc(100vw * 0.95);
@@ -42,6 +39,7 @@ h2 {
   padding: 1rem 0;
   list-style: none;
   line-height: 1;
+  margin: 0 -0.3rem;
 }
 .show-thumbnail-list:focus-within {
   outline: none;
