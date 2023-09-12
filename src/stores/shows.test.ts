@@ -42,6 +42,17 @@ it('should load all shows when called load()', async () => {
   expect(mockedFetch).toBeCalledWith('https://api.tvmaze.com/shows')
   expect(mockedFetch).toHaveBeenCalledTimes(1)
   expect(shows.list).toEqual([])
+  expect(shows.isError).toBe(false)
+})
+
+it('should load shows, but do it only once wuth lazyLoad)', async () => {
+  mockedFetch.mockImplementationOnce(makeHttpMock(true, []))
+  const shows = useShowsStore()
+  await shows.lazyLoad()
+  expect(mockedFetch).toBeCalledWith('https://api.tvmaze.com/shows')
+  expect(mockedFetch).toHaveBeenCalledTimes(1)
+  await shows.lazyLoad()
+  expect(mockedFetch).toHaveBeenCalledTimes(1)
 })
 
 it('should keep list set to null if loading errors out', async () => {
@@ -49,6 +60,22 @@ it('should keep list set to null if loading errors out', async () => {
   const shows = useShowsStore()
   await shows.load()
   expect(shows.list).toEqual(null)
+})
+
+it('should expose loading and error flags', async () => {
+  mockedFetch.mockImplementationOnce(makeHttpMock(false, []))
+  const shows = useShowsStore()
+  // before
+  expect(shows.isError).toBe(false)
+  expect(shows.isLoading).toBe(false)
+  const loadingTask = shows.load()
+  // during
+  expect(shows.isError).toBe(false)
+  expect(shows.isLoading).toBe(true)
+  await loadingTask
+  // after
+  expect(shows.isError).toBe(true)
+  expect(shows.isLoading).toBe(false)
 })
 
 it('should expose list filtered by genres', async () => {

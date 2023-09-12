@@ -27,19 +27,17 @@ export const useShowsStore = defineStore('shows', () => {
   const api = useApiStore()
 
   const list = ref<Show[] | null>(null)
-  const isLoading = ref<boolean>(false)
-  const isError = ref<boolean>(false)
+  const loadingState = ref<'initial' | 'error' | 'loading' | 'ok'>('initial')
 
   async function load() {
-    isLoading.value = true
-    isError.value = false
+    loadingState.value = 'loading'
     const response = await api.makeRequest<ShowList>('https://api.tvmaze.com/shows')
-    isLoading.value = false
 
     if (response) {
       list.value = response
+      loadingState.value = 'ok'
     } else {
-      isError.value = true
+      loadingState.value = 'error'
     }
   }
 
@@ -57,6 +55,9 @@ export const useShowsStore = defineStore('shows', () => {
   function findDetails(id: number) {
     return computed(() => list.value && list.value.find((item) => item.id === id))
   }
+
+  const isLoading = computed(() => loadingState.value === 'loading')
+  const isError = computed(() => loadingState.value === 'error')
 
   return { list, filterByGenre, findDetails, load, lazyLoad, isLoading, isError }
 })
