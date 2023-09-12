@@ -10,10 +10,22 @@ onMounted(() => {
 </script>
 
 <template>
-  <main v-if="shows.list">
-    <ShowThumbnailList title="Drama" :list="shows.filterByGenre('Drama').value" />
-    <ShowThumbnailList title="Comedy" :list="shows.filterByGenre('Comedy').value" />
-    <ShowThumbnailList title="Mystery" :list="shows.filterByGenre('Mystery').value" />
+  <main>
+    <ShowThumbnailList
+      title="Drama"
+      :list="shows.filterByGenre('Drama').value"
+      :is-loading="shows.isLoading"
+    />
+    <ShowThumbnailList
+      title="Comedy"
+      :list="shows.filterByGenre('Comedy').value"
+      :is-loading="shows.isLoading"
+    />
+    <ShowThumbnailList
+      title="Mystery"
+      :list="shows.filterByGenre('Mystery').value"
+      :is-loading="shows.isLoading"
+    />
   </main>
 </template>
 <style scoped>

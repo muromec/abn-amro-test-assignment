@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ShowThumbnailList from '@/components/ShowThumbnailList.vue'
-import ShowSkeletonList from '@/components/ShowSkeletonList.vue'
 
 import { watchEffect } from 'vue'
 import { useShowsSearchStore } from '@/stores/showsSearch'
@@ -14,8 +13,7 @@ watchEffect(() => {
 </script>
 <template>
   <main>
-    <ShowSkeletonList :count="30" title="Search results" v-if="shows.isLoading" />
-    <ShowThumbnailList v-if="shows.list" title="Search results" :list="shows.list" />
+    <ShowThumbnailList title="Search results" :list="shows.list" :is-loading="shows.isLoading" />
   </main>
 </template>
 <style scoped>
