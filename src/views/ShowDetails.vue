@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
-import { useShowsStore } from '@/stores/shows'
+import { useShowDetails } from '@/stores/showDetails'
 import { cleanupHTML } from '@/utils/cleanupHTML'
 
 const route = useRoute()
-const shows = useShowsStore()
-onMounted(async () => {
-  await shows.load()
+const detailsStore = useShowDetails()
+
+watchEffect(async () => {
+  await detailsStore.lazyLoadById(Number(route.params.id))
 })
-const details = shows.findDetails(Number(route.params.id))
+const details = detailsStore.findDetails(Number(route.params.id))
 function makeGenreRef(genre: string) {
   return `/genre/${genre}/`
 }
