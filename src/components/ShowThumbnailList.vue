@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useShowsStore } from '@/stores/shows'
+import { ref } from 'vue'
 import { useKeyboard } from '@/utils/keyboard'
 import ShowThumbnail from '@/components/ShowThumbnail.vue'
 import ShowSkeletonList from '@/components/ShowSkeletonList.vue'
@@ -26,7 +25,7 @@ const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard
     <ShowThumbnail
       ref="items"
       v-for="(show, index) of list"
-      key="show.id"
+      :key="show.id"
       :id="show.id"
       :name="show.name"
       :image="show.image.medium"

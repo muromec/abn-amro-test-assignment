@@ -3,10 +3,6 @@ import { defineStore } from 'pinia'
 import { useApiStore } from './api'
 import type { Show } from './types'
 
-type Link = {
-  href: string
-}
-
 type SearchResult = {
   show: Show
 }

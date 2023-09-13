@@ -24,7 +24,6 @@ const ShowBoilerPlate: Show = {
 
 function spreadShow(update: Partial<Show>): Show {
   const id: number = update.id || ShowBoilerPlate.id
-  const links = { self: { href: `/api/show/${id}` } }
   return { ...ShowBoilerPlate, ...update, _links: makeLinks(id), image: makeImages(id) }
 }
 

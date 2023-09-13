@@ -3,8 +3,6 @@ import { useShowsSearchStore } from './showsSearch'
 
 import { setActivePinia, createPinia } from 'pinia'
 
-import { MOCK_SHOW_LIST } from '@/mocks/shows'
-
 function makeHttpMock<ResponseType>(isOk: boolean, jsonData: ResponseType) {
   const response = {
     ok: isOk,
@@ -29,7 +27,7 @@ it('should have no list in initial state', () => {
 })
 
 it('should not call API when created', () => {
-  const search = useShowsSearchStore()
+  useShowsSearchStore()
   expect(mockedFetch).not.toBeCalled()
 })
 

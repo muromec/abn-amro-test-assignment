@@ -25,7 +25,7 @@ afterEach(() => {
 })
 
 it('should not call API when created', () => {
-  const details = useShowDetails()
+  useShowDetails()
   expect(mockedFetch).not.toBeCalled()
 })
 

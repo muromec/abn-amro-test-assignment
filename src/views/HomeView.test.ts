@@ -2,14 +2,14 @@ import { ref } from 'vue'
 import { vi, expect, it, beforeEach, afterEach } from 'vitest'
 import { screen, render, cleanup } from '@testing-library/vue'
 import { createTestingPinia } from '@pinia/testing'
+import { setActivePinia } from 'pinia'
 import HomeView from './HomeView.vue'
 import { useShowsStore } from '@/stores/shows'
 
-let pinia
 let shows: ReturnType<typeof useShowsStore>
 type MockType = ReturnType<typeof vi.fn>
 beforeEach(() => {
-  pinia = createTestingPinia({ createSpy: vi.fn })
+  setActivePinia(createTestingPinia({ createSpy: vi.fn }))
   shows = useShowsStore()
   ;(shows.filterByGenre as MockType).mockImplementation(() => ref([]))
 })

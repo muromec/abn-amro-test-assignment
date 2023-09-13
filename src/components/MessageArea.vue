@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Message from './Message.vue'
+import MessageElement from './MessageElement.vue'
 import { useMessagesStore } from '@/stores/messages'
 
 const messages = useMessagesStore()
@@ -7,9 +7,9 @@ const messages = useMessagesStore()
 <template>
   <div class="message-area">
     <div class="message-row">
-      <Message
+      <MessageElement
         v-for="message of messages.stack"
-        key="message.id"
+        :key="message.id"
         :id="message.id"
         :type="message.type"
         :content="message.contents"

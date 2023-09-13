@@ -1,10 +1,9 @@
-import { vi, expect, it, beforeEach, afterEach } from 'vitest'
+import { vi, expect, it, afterEach } from 'vitest'
 import { screen, fireEvent, render, cleanup } from '@testing-library/vue'
 import { createRouter, createMemoryHistory } from 'vue-router'
 
 import ShowThumbnailList from './ShowThumbnailList.vue'
 import { MOCK_SHOW_LIST } from '@/mocks/shows'
-import type { Show } from '@/stores/types'
 
 afterEach(cleanup)
 
@@ -61,7 +60,6 @@ it('should remove highlight on blur', async () => {
 
 it('should navigate to selected item with Space', async () => {
   renderList()
-  const listItems = screen.getAllByRole('listitem')
   await fireEvent.focus(screen.getByRole('list'))
   await fireEvent.keyDown(screen.getByRole('list'), { key: 'Space' })
   expect(router.push).toBeCalledWith('/show/0/')
@@ -69,7 +67,6 @@ it('should navigate to selected item with Space', async () => {
 
 it('should navigate to last item in the list with <', async () => {
   renderList()
-  const listItems = screen.getAllByRole('listitem')
   await fireEvent.focus(screen.getByRole('list'))
   await fireEvent.keyDown(screen.getByRole('list'), { key: 'ArrowLeft' })
   await fireEvent.keyDown(screen.getByRole('list'), { key: 'Space' })
@@ -78,7 +75,6 @@ it('should navigate to last item in the list with <', async () => {
 
 it('should navigate to next item in the list with >', async () => {
   renderList()
-  const listItems = screen.getAllByRole('listitem')
   await fireEvent.focus(screen.getByRole('list'))
   await fireEvent.keyDown(screen.getByRole('list'), { key: 'ArrowRight' })
   await fireEvent.keyDown(screen.getByRole('list'), { key: 'Space' })
@@ -87,7 +83,6 @@ it('should navigate to next item in the list with >', async () => {
 
 it('should loop back to first list element after then end', async () => {
   renderList()
-  const listItems = screen.getAllByRole('listitem')
   await fireEvent.focus(screen.getByRole('list'))
   await fireEvent.keyDown(screen.getByRole('list'), { key: 'ArrowRight' })
   await fireEvent.keyDown(screen.getByRole('list'), { key: 'ArrowRight' })

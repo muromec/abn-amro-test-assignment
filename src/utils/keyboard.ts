@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import type { Ref } from 'vue'
 
 interface KeyboardScrollable {

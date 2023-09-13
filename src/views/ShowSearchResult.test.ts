@@ -1,16 +1,16 @@
-import { ref, provide, inject } from 'vue'
+import { ref } from 'vue'
 import { vi, expect, it, beforeEach, afterEach } from 'vitest'
 import { screen, render, cleanup } from '@testing-library/vue'
+import { setActivePinia } from 'pinia'
 import { createTestingPinia } from '@pinia/testing'
 import { routeLocationKey } from 'vue-router'
 import ShowSearchResult from './ShowSearchResult.vue'
 import { useShowsSearchStore } from '@/stores/showsSearch'
 
-let pinia
 let showsSearch: ReturnType<typeof useShowsSearchStore>
 type MockType = ReturnType<typeof vi.fn>
 beforeEach(() => {
-  pinia = createTestingPinia({ createSpy: vi.fn })
+  setActivePinia(createTestingPinia({ createSpy: vi.fn }))
   showsSearch = useShowsSearchStore()
   ;(showsSearch.searchFor as MockType).mockImplementation(() => ref([]))
 })

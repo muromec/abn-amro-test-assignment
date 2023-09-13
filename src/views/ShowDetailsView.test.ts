@@ -1,7 +1,8 @@
-import { h, ref, provide, inject } from 'vue'
+import { h } from 'vue'
 import type { ComponentOptions } from 'vue'
 import { vi, expect, it, beforeEach, afterEach } from 'vitest'
 import { screen, render, cleanup } from '@testing-library/vue'
+import { setActivePinia } from 'pinia'
 import { createTestingPinia } from '@pinia/testing'
 import { routeLocationKey } from 'vue-router'
 import ShowDetailsView from './ShowDetailsView.vue'
@@ -9,7 +10,6 @@ import { useShowDetails } from '@/stores/showDetails'
 import type { Show } from '@/stores/types'
 import { MOCK_SHOW_LIST } from '@/mocks/shows'
 
-let pinia
 let details: ReturnType<typeof useShowDetails>
 const errorStates: { [key: string]: boolean } = {}
 const detailsCache: { [key: string]: Show } = {}
@@ -20,7 +20,7 @@ const RouterLink: ComponentOptions = {
 }
 type MockType = ReturnType<typeof vi.fn>
 beforeEach(() => {
-  pinia = createTestingPinia({ createSpy: vi.fn })
+  setActivePinia(createTestingPinia({ createSpy: vi.fn }))
   details = useShowDetails()
   ;(details.findDetails as MockType).mockImplementation((id: number) => detailsCache[id])
   ;(details.isErrorById as MockType).mockImplementation((id: number) => errorStates[id])

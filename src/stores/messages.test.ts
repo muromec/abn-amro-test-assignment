@@ -1,4 +1,4 @@
-import { vi, expect, it, beforeEach, afterEach } from 'vitest'
+import { vi, expect, it, beforeEach } from 'vitest'
 import { useMessagesStore } from './messages'
 import { setActivePinia, createPinia } from 'pinia'
 

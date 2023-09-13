@@ -1,4 +1,4 @@
-import { vi, expect, it, beforeEach, afterEach } from 'vitest'
+import { expect, it, afterEach } from 'vitest'
 import { screen, render, cleanup } from '@testing-library/vue'
 import ShowThumbnail from './ShowThumbnail.vue'
 import router from '@/router'

@@ -30,7 +30,7 @@ it('should have no list in initial state', () => {
 })
 
 it('should not call API when created', () => {
-  const shows = useShowsStore()
+  useShowsStore()
   expect(mockedFetch).not.toBeCalled()
 })
 

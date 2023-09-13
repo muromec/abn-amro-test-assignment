@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
-import { useRoute, RouterLink } from 'vue-router'
+import { watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
 import { useShowDetails } from '@/stores/showDetails'
-import { cleanupHTML } from '@/utils/cleanupHTML'
 import ErrorMessage from '@/components/ErrorMessage.vue'
 import ShowDetails from '@/components/ShowDetails.vue'
 

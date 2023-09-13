@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import type { Ref } from 'vue'
 import { cleanupHTML } from '@/utils/cleanupHTML'
 import type { Show } from '@/stores/types'
@@ -17,7 +17,7 @@ function makeGenreRef(genre: string) {
       <h2 data-testid="show-title-id">{{ details.name }}</h2>
       <img class="poster" :src="details.image.medium" />
       <div class="genres">
-        <span v-for="genre of details.genres">
+        <span v-for="(genre, index) of details.genres" :key="index">
           <router-link :to="makeGenreRef(genre)">{{ genre }}</router-link>
         </span>
       </div>
