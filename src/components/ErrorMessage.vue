@@ -18,4 +18,13 @@ div {
   text-decoration-style: dashed;
   text-decoration-thickness: 0.03em;
 }
+@media screen and (max-width: 600px) {
+  div {
+    padding: 0;
+    margin: var(--margin-v) var(--margin-h);
+    font-size: 1.5rem;
+    align-items: start;
+  }
+}
+
 </style>

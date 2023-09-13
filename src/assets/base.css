@@ -17,7 +17,6 @@
 :root {
   --margin-h: 2rem;
   --margin-v: 2rem;
-  --margin-v-content: 3rem;
 }
 
 @media screen and (max-width: 600px) {

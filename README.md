@@ -1,71 +1,88 @@
 # abn-test-assignment
 
-This template should help get you started developing with Vue 3 in Vite.
+This application display information about tv shows returned by tvmaze API.
 
-## Recommended IDE Setup
+Confirmed to be working with following versions of node and npm:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+    $ node --version
+    v20.5.1
+    $ npm --version
+    9.8.1
 
-## Type Support for `.vue` Imports in TS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+# Setup and run
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Use npm to install dependencies and run development server:
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-## Customize configuration
+    $ npm install
+    $ npm run dev
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+Development server will output the URL to acccess the page, which by default should be http://localhost:5173/
 
-```sh
-npm install
-```
 
-### Compile and Hot-Reload for Development
+# Run units
 
-```sh
-npm run dev
-```
+Use the following command to run units and see 100% coverage for all files:
 
-### Type-Check, Compile and Minify for Production
 
-```sh
-npm run build
-```
+    $ npm run test:unit
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-```sh
-npm run test:unit
-```
+# Technology choice decisions
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
+Project uses vue3 with composition API for user interface and pinia on the data layer. 
+Why vue3: the mix of single-file components and composition API allows to use best tools
+for each task and components self-contained at the same time. Declarative templates naturally
+restrict leakage of login into presentational layer, automatic CSS scoping makes it possible
+to write CSS the usual CSS way and then reuse selectors in automation tools if needed, as
+classnames are not mangled.
 
-```sh
-# Install browsers for the first run
-npx playwright install
+Setup section of the component is mostly used to direct data flows and should not contain
+major pieces of logic. Case in point: `useKeyboard()` handles Arrow navigation in a horizontal
+list and can be reused in a different component.
 
-# When testing on CI, must build the project first
-npm run build
+Composition API is a huge step forward from mixins, as we can keep behavioral code reusable
+and in a separate file, at the same time interaction of different hooks is fully visible
+in a setup function (i.e. Mixin1 can't talk to Mixin2 or modify component state and DOM 
+without it being obvious in the component itself).
 
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
+On the data layer we have pinia, as it allows for the same compositional API but in stores.
+Method calls and getter access both support typescript. Instead of dispatchign a string name
+of method, we just call the method like on a regular object.
 
-### Lint with [ESLint](https://eslint.org/)
+Overall, the setup is very much default vue3 project. No fancy actor libraries, pipelines
+or service workers. If you want to see me configuring things, look at my gists and 
+github: https://gist.github.com/muromec .
 
-```sh
-npm run lint
-```
+
+# Technical design decisions
+
+API is accessed through a pinia store that acts as a middleware, taking care of error
+handling, displaying messages and deserialization.
+One pinia store per endpoint to make sure search data does not pop up in general lists.
+Another store handles displaying error messages. They don't time out and disappear
+per WCAG guidelines (see comment in the store itself).
+
+Components are divided into views that interact with the router and the store and presentation
+components that accept data as props. All pages that have lists of shows reuse the same
+show list component.
+
+# Design and responsiveness
+
+Color theme is beige, black and orage. Beige works better as neutral color compared to bright white
+in both dark and light environments. Text is black, orange provides contrast for borders.
+
+Lists follow the usual pattern we see on Netflix when screen size allows to go horizontal. Lists
+are keyboard-navigatable. Try tabbing into one and pressing Left and Right. It also loops once
+reaches the end. Tab between lists, arrow-navigate inside lists, press Space to select the item.
+
+While loading, skeleton list is shown. Uncomment the marked line in `api.ts` to see slow mode.
+Skeleton tiles glow a bit. Uncommenting another marked line in `api.ts` or blocking requests
+in dev tools will bring up message alerts that slide nicely.
+
+Show lists are horizontal when space allows and start wrapping into three columns once we hit 715px wide.
+
+General page frame decres margins below 600px, header switches to shorter headline. At 390px we no
+longer have search bar in the header.
