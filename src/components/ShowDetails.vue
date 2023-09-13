@@ -13,7 +13,7 @@ function makeGenreRef(genre: string) {
 
 <template>
   <div class="details">
-    <div class="col">
+    <div class="col poster">
       <h2 data-testid="show-title-id">{{ details.name }}</h2>
       <img class="poster" :src="details.image.medium" />
       <div class="genres">
@@ -36,18 +36,22 @@ function makeGenreRef(genre: string) {
   </div>
 </template>
 <style scoped>
-main {
-  padding: 2rem;
-}
 .details {
   display: flex;
   flex-direction: row;
+  column-gap: var(--margin-h);
 }
+@media screen and (max-width: 600px) {
+  .details {
+    flex-direction: column;
+  }
+}
+
 img.poster {
   margin-top: 1rem;
 }
 .summary {
-  margin: 3rem 2rem;
+  margin-top: calc(var(--margin-v) + 1rem); /* to align with the image above */
 }
 .summary p {
   margin-bottom: 0.4rem;
@@ -63,6 +67,9 @@ img.poster {
   text-decoration-line: underline;
 }
 .links {
-  margin: 2rem 0;
+  margin: var(--margin-v) 0;
+}
+.col.poster {
+  max-width: 210px;
 }
 </style>

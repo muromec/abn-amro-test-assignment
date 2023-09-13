@@ -33,9 +33,3 @@ onMounted(() => {
     </template>
   </main>
 </template>
-<style scoped>
-main {
-  padding: 2rem;
-  height: 100%;
-}
-</style>

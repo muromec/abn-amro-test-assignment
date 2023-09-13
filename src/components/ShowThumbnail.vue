@@ -35,6 +35,7 @@ const url = `/show/${props.id}/`
 <style scoped>
 .show-thumbnail {
   margin: 0 0.3rem;
+  margin-bottom: 1rem;
 }
 .show-thumnail--selected {
   outline: 3px var(--color-border) solid;

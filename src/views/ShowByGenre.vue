@@ -24,8 +24,3 @@ onMounted(() => {
     />
   </main>
 </template>
-<style scoped>
-main {
-  padding: 2rem;
-}
-</style>

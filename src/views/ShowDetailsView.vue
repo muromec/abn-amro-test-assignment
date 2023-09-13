@@ -22,8 +22,3 @@ const isError = detailsStore.isErrorById(Number(route.params.id))
     <ShowDetails v-if="details" :value="details" />
   </main>
 </template>
-<style scoped>
-main {
-  padding: 2rem;
-}
-</style>

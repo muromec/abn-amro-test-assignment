@@ -48,7 +48,13 @@ const { selectedIndex, handleFocus, handleBlur, handleOpen, move } = useKeyboard
 .show-thumbnail-list:focus-within {
   outline: none;
 }
-
+@media screen and (max-width: 715px) {
+  .show-thumbnail-list {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    rows-gap: 2rem;
+  }
+}
 ul::-webkit-scrollbar {
   display: none;
 }

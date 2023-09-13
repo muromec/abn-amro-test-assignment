@@ -7,7 +7,8 @@ import MessageArea from './components/MessageArea.vue'
 <template>
   <MessageArea />
   <header>
-    <h1>I am a film gallery</h1>
+    <h1 class="long">I am a film gallery</h1>
+    <h1 class="short">Films</h1>
     <div class="wrapper">
       <SearchForm class="search" />
       <nav>
@@ -23,10 +24,14 @@ header {
   display: flex;
   line-height: 1.5;
   min-width: 100vw;
-  padding: 0 2rem;
+  max-width: 100vw;
+  padding: 0 var(--margin-h);
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--color-border);
+}
+h1.short {
+  display: none;
 }
 .wrapper {
   display: flex;
@@ -50,5 +55,18 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+@media screen and (max-width: 600px) {
+  h1.short {
+    display: inline-block;
+  }
+  h1.long {
+    display: none;
+  }
+}
+@media screen and (max-width: 390px) {
+  .search {
+    display: none;
+  }
 }
 </style>
