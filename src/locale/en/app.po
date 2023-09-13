@@ -1,0 +1,42 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/App.vue:12
+msgid "Films"
+msgstr "Films"
+
+#: src/App.vue:16
+msgid "Home"
+msgstr "Home"
+
+#: src/App.vue:11
+msgid "I am a film gallery"
+msgstr "I am a film gallery"
+
+#: src/components/ShowDetails.vue:27
+msgid "Language:"
+msgstr ""
+
+#: src/components/ShowDetails.vue:28
+msgid "Premiered:"
+msgstr ""
+
+#: src/views/ShowSearchResult.vue:24
+msgid "Search results"
+msgstr ""
+
+#: src/components/SearchForm.vue:13
+msgid "Search…"
+msgstr ""
+
+#: src/components/LocaleSelector.vue:14
+msgid "Select language"
+msgstr ""

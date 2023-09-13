@@ -26,5 +26,4 @@ div {
     align-items: start;
   }
 }
-
 </style>

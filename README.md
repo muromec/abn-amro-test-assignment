@@ -52,9 +52,7 @@ On the data layer we have pinia, as it allows for the same compositional API but
 Method calls and getter access both support typescript. Instead of dispatchign a string name
 of method, we just call the method like on a regular object.
 
-Overall, the setup is very much default vue3 project. No fancy actor libraries, pipelines
-or service workers. If you want to see me configuring things, look at my gists and 
-github: https://gist.github.com/muromec .
+Overall, the setup is very much default vue3 project. Only thing I added myself is gettext library (see below)
 
 
 # Technical design decisions
@@ -86,3 +84,8 @@ Show lists are horizontal when space allows and start wrapping into three column
 
 General page frame decres margins below 600px, header switches to shorter headline. At 390px we no
 longer have search bar in the header.
+
+# Extra
+
+There is a language selector at the bottom of the page, that works through vue3-gettext.
+Localization files can be found in src/locale.

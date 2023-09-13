@@ -2,21 +2,23 @@
 import { RouterLink, RouterView } from 'vue-router'
 import SearchForm from './components/SearchForm.vue'
 import MessageArea from './components/MessageArea.vue'
+import LocaleSelector from './components/LocaleSelector.vue'
 </script>
 
 <template>
   <MessageArea />
   <header>
-    <h1 class="long">I am a film gallery</h1>
-    <h1 class="short">Films</h1>
+    <h1 class="long">{{ $gettext('I am a film gallery') }}</h1>
+    <h1 class="short">{{ $gettext('Films') }}</h1>
     <div class="wrapper">
       <SearchForm class="search" />
       <nav>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/">{{ $gettext('Home') }}</RouterLink>
       </nav>
     </div>
   </header>
   <RouterView />
+  <LocaleSelector />
 </template>
 
 <style scoped>

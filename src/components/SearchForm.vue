@@ -10,6 +10,6 @@ function handleSearch() {
 </script>
 <template>
   <form @submit.prevent="handleSearch">
-    <input placeholder="Search..." v-model="query" />
+    <input :placeholder="$gettext('Search…')" v-model="query" />
   </form>
 </template>

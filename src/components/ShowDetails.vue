@@ -24,8 +24,8 @@ function makeGenreRef(genre: string) {
     </div>
     <div class="col summary">
       <p>{{ cleanupHTML(details.summary) }}</p>
-      <p>Language: {{ details.language }}</p>
-      <p>Premiered: {{ details.premiered }}</p>
+      <p>{{ $gettext('Language:') }} {{ details.language }}</p>
+      <p>{{ $gettext('Premiered:') }} {{ details.premiered }}</p>
     </div>
   </div>
   <div class="links">

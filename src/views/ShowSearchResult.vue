@@ -17,7 +17,7 @@ watchEffect(() => {
     <ErrorMessage v-if="shows.isError" />
     <ShowThumbnailList
       v-else
-      title="Search results"
+      :title="$gettext('Search results')"
       :list="shows.list"
       :is-loading="shows.isLoading"
     />

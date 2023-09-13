@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: src/App.vue:12
+msgid "Films"
+msgstr ""
+
+#: src/App.vue:16
+msgid "Home"
+msgstr ""
+
+#: src/App.vue:11
+msgid "I am a film gallery"
+msgstr ""
+
+#: src/components/ShowDetails.vue:27
+msgid "Language:"
+msgstr ""
+
+#: src/components/ShowDetails.vue:28
+msgid "Premiered:"
+msgstr ""
+
+#: src/views/ShowSearchResult.vue:24
+msgid "Search results"
+msgstr ""
+
+#: src/components/SearchForm.vue:13
+msgid "Search…"
+msgstr ""
+
+#: src/components/LocaleSelector.vue:14
+msgid "Select language"
+msgstr ""
